@@ -10,6 +10,9 @@ class MovieItem extends Component {
             <li className='movie-item'>
                 <Link to={{
                     pathname: `/movies/${item.id}`,
+                    state: {
+                        movie: item,
+                    },
                 }} key={item.id}>
                     {item.name || item.title}
                 </Link>
