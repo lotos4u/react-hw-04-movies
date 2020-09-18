@@ -1,0 +1,46 @@
+.app {
+  text-align: center;
+
+  .navigation {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 5px 5px 0px rgba(133, 130, 133, 1);
+
+    .link {
+      margin: 0 10px;
+      color: black;
+      text-decoration: none;
+
+      &.active-link {
+        color: darkred;
+
+      }
+    }
+  }
+
+  .content {
+    margin-top: 5px;
+    display: flex;
+    padding: 10px;
+
+    .trending {
+      text-align: left;
+    }
+
+    .movies {
+      .form {
+        display: flex;
+      }
+
+      .movies-list {
+        text-align: left;
+
+        .movie-item {
+
+        }
+      }
+    }
+  }
+}
+
