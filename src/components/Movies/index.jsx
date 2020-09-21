@@ -9,13 +9,26 @@ class Movies extends Component {
         query: '',
         movies: [],
     };
+
+    componentDidMount() {
+        if (!this.props.location || !this.props.location.state) {
+            return;
+        }
+        const {query, movies} = this.props.location.state;
+        this.setState({query: query, movies: [...movies]});
+    }
+
     handleFormSubmit = (query) => {
         this.setState({query: query}, () => this.searchMovies());
     };
 
     searchMovies() {
         search(this.state.query).then(items => {
-            this.setState({movies: items})
+            this.setState({movies: items}, () => this.props.history.push({
+                pathname: '/movies',
+                search: `?query=${this.state.query}`,
+                state: {...this.state},
+            }));
         }).catch(e => {
             console.log('e=', e);
         });
@@ -24,7 +37,7 @@ class Movies extends Component {
     render() {
         return (
             <div className='movies'>
-                <Form onSubmit={this.handleFormSubmit}/>
+                <Form query={this.state.query} onSubmit={this.handleFormSubmit}/>
                 <MoviesList items={this.state.movies}/>
             </div>
         );

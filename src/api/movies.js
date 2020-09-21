@@ -45,9 +45,9 @@ export const search = (query, page = 1) => {
 }
 
 export const getDetails = (id) => {
-    const url = `/?id=${id}&api_key=${config.api_key}`;
+    const url = `/movie/${id}?language=en-US&api_key=${config.api_key}`;
     return axios.get(url).then(r => {
-        return r.data.hits;
+        return r.data;
     }).catch(e => {
         console.warn(e);
         return e;

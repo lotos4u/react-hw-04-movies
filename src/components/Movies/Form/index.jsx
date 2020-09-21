@@ -7,11 +7,18 @@ class Form extends Component {
     };
 
     componentDidMount() {
+        this.setState({query: this.props.query});
         window.addEventListener('keydown', this.handleKeyDown);
     }
 
     componentWillUnmount() {
         window.removeEventListener('keydown', this.handleKeyDown);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (!prevState.query && !prevProps.query && this.props.query) {
+            this.setState({query: this.props.query});
+        }
     }
 
     handleKeyDown = (e) => {
